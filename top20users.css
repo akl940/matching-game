@@ -1,0 +1,48 @@
+body
+{
+    background-color:mintcream;
+    min-width: 1000px;
+}
+#main_title
+{
+    color: navy;
+    text-align: center;
+    font-family: monospace;
+    border: 3px solid navy;
+    border-radius: 25px;
+}
+.column
+{
+    float: left;
+    width: 50%;
+}
+.row
+{
+    clear: both;
+}
+#list_titles
+{
+    margin-left: 325px;
+    margin-right: 325px;
+    color: navy;   
+    font-family: monospace;
+    line-height: 2;
+    text-align: center;
+    white-space: nowrap;
+}
+#datadevices_list
+{
+    color: navy;
+    font-family: monospace;
+    line-height: 2;
+    font-size: large;
+    margin-left: 330px;
+}
+#names_list
+{
+    color: navy;
+    font-family: monospace;
+    line-height: 2;
+    text-align: center;
+    font-size: large;  
+}
