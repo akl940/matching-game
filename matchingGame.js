@@ -23,7 +23,7 @@ function init()
             }
     }
 
-    // Hide the success message
+    //hide the success message
     $('#successMessage').hide();
     $('#successMessage').css( 
         {
@@ -42,7 +42,7 @@ function init()
                 height: 0
             } );    
 
-    // Reset the game
+    //4eset the game
     correctCards = 0;
     tries = 10;
     $('#names').html( '' );
@@ -184,7 +184,9 @@ function init()
     {
         var j = Math.floor(Math.random() * (i+1)); //random index from 0 to i
         [users[i], users[j]] = [users[j], users[i]]; //swap elements at index i and index j
-        [numbers[i], numbers[j]] = [numbers[j], users[i]]; //shuffle numbers array as well so the numbers still correspond to the correct names
+
+        //shuffle numbers array as well so the numbers still correspond to the correct names - since won't be able to just use index once randomized
+        [numbers[i], numbers[j]] = [numbers[j], numbers[i]]; 
     }
     //create names section
     for( var i = 0; i < users.length; i++)
@@ -222,6 +224,8 @@ function handleMatch( event, ui )
     else
     {
         tries--;
+        //incorrect animation?? flash a red x?
+
         $('#score').html('<b>SCORE: ' + correctCards + '<br>TRIES LEFT: '+ tries + '</b>');
     }
     
