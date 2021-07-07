@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINQ Matching Game</title>
+    <link rel="stylesheet" type="text/css" href="matchingGame.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    <script type="text/javascript" src = "matchingGame.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $("#instructions").modal('show');
+        });
+    </script>
+
+</head>
+<body>
+
+    <div class="titleBox">
+        <h1>Wachter's Top 20 Users</h1>
+    </div>
+    <br>
+    <div class = "column">
+        <button id="instructionsBtn">INSTRUCTIONS</button>
+    </div>
+
+    <div class = "column">
+        <div id="myModal" class="modal">
+
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>LINQ Matching Game Instructions<br><br>Click and drag the names
+                    from the right box to their corresponding data usage/device types in the left box.
+                    You have 10 tries to get 5 correct answers! Correct matches will be highlighted in green,
+                    and your score is tracked at the top right of the screen.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id = "score"></div>
+
+    <div class = "column">
+        <h2 id = "list_titles"><u>Data Usage, Device Types</u></h2>
+    </div>
+    <div class = "column">
+        <h2 id = "list_titles"><u>Names</u></h2>
+    </div>
+
+    <div id="content">
+        <div id="successMessage">
+            <h2>You Win!</h2>
+            <button onclick="init()">Play Again</button>
+        </div>
+        <div id="failMessage">
+            <h2>You Lose!</h2>
+            <button onclick="init()">Play Again</button>
+        </div>
+    <div id="names"> </div>
+    <div id="datadevices"> </div>
+
+    </div>
+
+</body>
+</html>

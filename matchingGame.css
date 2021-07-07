@@ -1,0 +1,210 @@
+body 
+{
+    margin: 30px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    line-height: 1.5em;
+    color: navy;
+    background-color: mintcream;
+}
+ 
+h1, h2, h3, h4 
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+#content 
+{
+    margin: 40px 35px;
+    text-align: center;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+#score
+{
+    margin-right: 55px;
+    text-align: right;
+    font-size: larger;
+}
+#instructionsBtn
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    background-color: navy;
+    color: mintcream;
+    padding: 10px;
+    margin-left: 55px;
+}
+
+.modal 
+{
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+  
+.modal-content 
+{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    text-align: center;
+}
+  
+.close 
+{
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover, .close:focus 
+{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.titleBox
+{
+    clear: both;
+    color: navy;
+    text-align: center;
+    margin: 0px;
+    background: mintcream;
+    border: 3px solid navy;
+    border-radius: 25px;
+}
+ 
+.titleBox h1 
+{
+    font-weight: bold;
+    margin: 10px;
+    color: navy;
+    font-size: 1.5em;
+}
+
+.column
+{
+    float: left;
+    width: 50%;
+}
+
+#list_titles
+{
+    margin-left: 325px;
+    margin-right: 325px;
+    color: navy;   
+    font-family: monospace;
+    line-height: 2;
+    text-align: center;
+    white-space: nowrap;
+}
+ 
+#datadevices 
+{
+    margin: 0 auto 3em auto;
+    background: mintcream;
+    float: left;
+}
+ 
+#names 
+{
+    margin: 0 auto;
+    background: mintcream;
+    float: right;
+}
+ 
+#datadevices, #names 
+{
+    width: 47%;
+    height: 80%;
+    padding: .85em;
+    border: 2px solid navy;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+    box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+    color: navy;
+}
+
+#datadevices div, #names div 
+{
+    float: left;
+    width: 43%;
+    height: 18%;
+    padding: .85em;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: 2px solid navy;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin: 10px 0 0 10px;
+}
+ 
+#datadevices div.hovered 
+{
+    background: #aaa;
+    color: navy;
+}
+ 
+#datadevices div 
+{
+    border-style: dashed;
+}
+ 
+#names div 
+{
+    color: navy;
+    font-size: 1em;
+    text-align: center;
+}
+ 
+#names div.ui-draggable-dragging 
+{
+    -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+    box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
+}
+
+.correct 
+{ 
+    background: lightgreen; 
+}
+
+#successMessage, #failMessage
+{
+    position: fixed;
+    margin-left: 250px;
+    margin-top: -150px;
+    z-index: 100;
+    border: 2px solid #333;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
+    -webkit-box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
+    box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
+    padding: 20px;
+}
+#successMessage
+{
+    background: #dfd;
+}
+#failMessage
+{
+    background: rgb(243, 157, 157);
+}
+
