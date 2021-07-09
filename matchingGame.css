@@ -26,20 +26,22 @@ h1, h2, h3, h4
     text-align: right;
     font-size: larger;
 }
-#instructionsBtn
+#correctImg, #incorrectImg
 {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    background-color: navy;
-    color: mintcream;
-    padding: 10px;
-    margin-left: 55px;
+    position: fixed;
+    z-index: 200;
+    width: 10px;
+    height: 20px;
 }
-
+#check, #x
+{
+    border-radius: 25px;
+}
 .modal 
 {
-    display: none; 
+    display: block; 
     position: fixed;
-    z-index: 1;
+    z-index: 200;
     padding-top: 100px;
     left: 0;
     top: 0;
@@ -145,7 +147,7 @@ h1, h2, h3, h4
     width: 43%;
     height: 18%;
     padding: .85em;
-    padding-top: 0;
+    padding-top: 5px;
     padding-bottom: 0;
     border: 2px solid navy;
     -moz-border-radius: 10px;
@@ -187,9 +189,9 @@ h1, h2, h3, h4
 #successMessage, #failMessage
 {
     position: fixed;
-    margin-left: 250px;
+    margin-left: 200px;
     margin-top: -150px;
-    z-index: 100;
+    z-index: 300;
     border: 2px solid #333;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -201,10 +203,16 @@ h1, h2, h3, h4
 }
 #successMessage
 {
-    background: #dfd;
+    background: rgb(138, 255, 138);
 }
 #failMessage
 {
     background: rgb(243, 157, 157);
 }
-
+#playAgainBtn
+{
+    padding: 5px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: mintcream;
+    background-color: navy;
+}

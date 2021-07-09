@@ -1,16 +1,17 @@
 var correctCards = 0;
+var tries = 0;
 $( init );
 
 function init() 
 {
     //set up the modal for instructions
     var modal = document.getElementById("myModal");
-    var btn = document.getElementById("instructionsBtn");
+    //var btn = document.getElementById("instructionsBtn");
     var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function() 
+    /*btn.onclick = function() //modal opens with button click
     {
         modal.style.display = "block";
-    }
+    }*/
     span.onclick = function() 
     {
         modal.style.display = "none";
@@ -23,6 +24,25 @@ function init()
             }
     }
 
+    $('#correctImg').hide();
+    $('#correctImg').css(
+        {
+            left: '580px',
+            top: '250px',
+            width: 0,
+            height: 0
+        }
+    )
+    $('#incorrectImg').hide();
+    $('#incorrectImg').css(
+        {
+            left: '580px',
+            top: '250px',
+            width: 0,
+            height: 0
+        }
+    )
+
     //hide the success message
     $('#successMessage').hide();
     $('#successMessage').css( 
@@ -33,21 +53,21 @@ function init()
             height: 0
         } );
 
-        $('#failMessage').hide();
-        $('#failMessage').css( 
-            {
-                left: '580px',
-                top: '250px',
-                width: 0,
-                height: 0
-            } );    
+    $('#failMessage').hide();
+    $('#failMessage').css( 
+    {
+        left: '580px',
+        top: '250px',
+        width: 0,
+        height: 0
+    } );    
 
-    //4eset the game
+    //reset the game
     correctCards = 0;
-    tries = 10;
+    tries = 5;
     $('#names').html( '' );
     $('#datadevices').html( '' );
-    $('#score').html('<b>SCORE: ' + correctCards + '<br>TRIES LEFT: 10</b>');
+    $('#score').html('<b>SCORE: ' + correctCards + '<br>TRIES LEFT: ' + tries + '</b>');
 
 
     //json array of users -- names, data usage, device types
@@ -208,11 +228,23 @@ function handleMatch( event, ui )
     var nameNum = ui.draggable.data( 'number' );
 
     //if correct match - change background color, position directly on top of slot, prevent element from being dragged again, increment score
-
     //if incorrect - decrement number of tries
 
     if ( datadeviceNum == nameNum ) //correct match
     {
+        $('#check').width(200);
+        $('#check').height(200);
+        $('#correctImg').css(
+            {
+                
+                "position": "fixed",
+                "top": "25%",
+                "left": "45%",
+            }
+        );
+        $('#correctImg').fadeTo(900, 1);
+        $('#correctImg').fadeTo(900, 0);
+       
         ui.draggable.addClass( 'correct' );
         ui.draggable.draggable( 'disable' );
         $(this).droppable( 'disable' );
@@ -221,36 +253,47 @@ function handleMatch( event, ui )
         correctCards++;
         $('#score').html('<b>SCORE: ' + correctCards + '<br>TRIES LEFT: '+ tries + '</b>');
     }
-    else
+    else //incorrect match
     {
+        $('#x').width(200);
+        $('#x').height(200);
+        $('#incorrectImg').css(
+            {
+                "position": "fixed",
+                "top": "25%",
+                "left": "45%"
+            }
+        );
+        $('#incorrectImg').fadeTo(900, 1);
+        $('#incorrectImg').fadeTo(900, 0);
+       
         tries--;
-        //incorrect animation?? flash a red x?
-
         $('#score').html('<b>SCORE: ' + correctCards + '<br>TRIES LEFT: '+ tries + '</b>');
     }
     
     //If they get 5 correct answers then show success message
 
-    if ( correctCards == 5 ) 
+    if ( correctCards == 3 ) 
     {
-        $('#successMessage').show();
+        
+        $('#successMessage').delay(1000).show(0);
         $('#successMessage').animate( {
             left: '25%',
             top: '50%',
             width: '400px',
             height: '100px',
             opacity: 1
-        } );
+        }, 800 );
     }
     if( tries == 0) //they get 10 tries - game over if this reaches 0
     {
-        $('#failMessage').show();
+        $('#failMessage').delay(1000).show(0);
         $('#failMessage').animate( {
             left: '25%',
             top: '50%',
             width: '400px',
             height: '100px',
             opacity: 1
-        } );
+        }, 800 );
     }
 }
