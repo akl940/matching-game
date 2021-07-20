@@ -6,12 +6,13 @@ function init()
 {
     //set up the modal for instructions
     var modal = document.getElementById("myModal");
-    //var btn = document.getElementById("instructionsBtn");
+    var btn = document.getElementById("startBtn");
     var span = document.getElementsByClassName("close")[0];
-    /*btn.onclick = function() //modal opens with button click
+    
+    btn.onclick = function()
     {
-        modal.style.display = "block";
-    }*/
+        modal.style.display = "none";
+    }
     span.onclick = function() 
     {
         modal.style.display = "none";
@@ -23,6 +24,8 @@ function init()
                 modal.style.display = "none";
             }
     }
+
+    //hide elements
 
     $('#correctImg').hide();
     $('#correctImg').css(
@@ -43,7 +46,6 @@ function init()
         }
     )
 
-    //hide the success message
     $('#successMessage').hide();
     $('#successMessage').css( 
         {
@@ -180,19 +182,17 @@ function init()
         return (a.Data - b.Data)*(-1); //sort the array by data usage (mult. by -1 to put in descending order)
     });
 
-    var numbers = []; //array of numbers 1 to total used for matching
+    var numbers = []; //array of numbers 1 to total used for checking matches
     for( var i = 0; i < users.length; i++)
     {
         numbers[i] = i+1; //fill in numbers
-
-        //set data usage to two decimal places
-        users[i].Data.toFixed(2); //not working
     }
 
-     //create data usage/device type section
+     //create data usage/device type section -- make data usage 2 decimal points
      for( var i = 1; i <= users.length; i++)
      {
-         $('<div>' + users[i-1].Data + ' GB, ' + users[i-1].Device + '</div>').data( 'number', i ).appendTo( '#datadevices' ).droppable( //assign match number, add to display section, accept drops 
+         //assign match number, store info to display later, add to display section, accept drops/handle matches 
+         $('<div>' + users[i-1].Data.toFixed(2) + ' GB, ' + users[i-1].Device + '</div>').data( 'number', i ).data('info', users[i-1].Data.toFixed(2) + ' GB, ' + users[i-1].Device).data('name', users[i-1].Name).appendTo( '#datadevices' ).droppable(
              {
                  accept: '#names div',
                  hoverClass: 'hovered',
@@ -205,12 +205,13 @@ function init()
         var j = Math.floor(Math.random() * (i+1)); //random index from 0 to i
         [users[i], users[j]] = [users[j], users[i]]; //swap elements at index i and index j
 
-        //shuffle numbers array as well so the numbers still correspond to the correct names - since won't be able to just use index once randomized
+        //shuffle numbers array as well so the numbers still correspond to the correct names - because won't be able to just use index once randomized
         [numbers[i], numbers[j]] = [numbers[j], numbers[i]]; 
     }
     //create names section
     for( var i = 0; i < users.length; i++)
     {
+        //assign match number, add to display section, make draggable
         $('<div>' + users[i].Name + '</div>').data( 'number', numbers[i]).attr( 'id', 'card'+numbers[i] ).appendTo( '#names' ).draggable( 
             {
         
@@ -224,14 +225,12 @@ function init()
 //match checking when elements dropped
 function handleMatch( event, ui ) 
 {
-    var datadeviceNum = $(this).data( 'number' ); 
+    var datadeviceNum = $(this).data( 'number' ); //get numbers for match checking
     var nameNum = ui.draggable.data( 'number' );
-
-    //if correct match - change background color, position directly on top of slot, prevent element from being dragged again, increment score
-    //if incorrect - decrement number of tries
 
     if ( datadeviceNum == nameNum ) //correct match
     {
+        //green check animation
         $('#check').width(200);
         $('#check').height(200);
         $('#correctImg').css(
@@ -245,16 +244,22 @@ function handleMatch( event, ui )
         $('#correctImg').fadeTo(900, 1);
         $('#correctImg').fadeTo(900, 0);
        
-        ui.draggable.addClass( 'correct' );
-        ui.draggable.draggable( 'disable' );
-        $(this).droppable( 'disable' );
-        ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-        ui.draggable.draggable( 'option', 'revert', false );
-        correctCards++;
-        $('#score').html('<b>SCORE: ' + correctCards + '<br>TRIES LEFT: '+ tries + '</b>');
+        ui.draggable.addClass( 'correct' ); //change background color to green to show match
+        ui.draggable.draggable( 'disable' ); //prevent name element from being dragged again
+        $(this).droppable( 'disable' ); //prevent other elements from being dropped on this slot
+        $(this).css({"border-style":"solid"}); //change dashed border
+
+        ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } ); //position name element directly on top of slot
+        ui.draggable.draggable( 'option', 'revert', false ); //prevent element from reverting to original position after drop
+
+        ui.draggable.html($(this).data('name') + "|" + $(this).data('info')); //update inner html to show both the matched name and data/device info
+
+        correctCards++; //increment score
+        $('#score').html('<b>SCORE: ' + correctCards + '<br>TRIES LEFT: '+ tries + '</b>'); //update score display
     }
     else //incorrect match
     {
+        //red x animation
         $('#x').width(200);
         $('#x').height(200);
         $('#incorrectImg').css(
@@ -267,33 +272,31 @@ function handleMatch( event, ui )
         $('#incorrectImg').fadeTo(900, 1);
         $('#incorrectImg').fadeTo(900, 0);
        
-        tries--;
-        $('#score').html('<b>SCORE: ' + correctCards + '<br>TRIES LEFT: '+ tries + '</b>');
+        tries--; //decrement number of tries left
+        $('#score').html('<b>SCORE: ' + correctCards + '<br>TRIES LEFT: '+ tries + '</b>'); //update score display
     }
     
-    //If they get 5 correct answers then show success message
-
+    //If they get 3 correct answers then show success message
     if ( correctCards == 3 ) 
     {
-        
         $('#successMessage').delay(1000).show(0);
         $('#successMessage').animate( {
-            left: '25%',
+            left: '23%',
             top: '50%',
             width: '400px',
-            height: '100px',
+            height: '130px',
             opacity: 1
-        }, 800 );
+        }, 800 ); //delay 800 to wait for green check animation to fade first
     }
     if( tries == 0) //they get 10 tries - game over if this reaches 0
     {
         $('#failMessage').delay(1000).show(0);
         $('#failMessage').animate( {
-            left: '25%',
+            left: '23%',
             top: '50%',
             width: '400px',
-            height: '100px',
+            height: '130px',
             opacity: 1
-        }, 800 );
+        }, 800 ); //delay 800 to wait for red x animation to fade first
     }
 }

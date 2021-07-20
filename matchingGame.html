@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta name = "viewport" content="width=device-width, initial-scale=1.0">
-    <title>LINQ Matching Game</title>
+    <title>LINQ 'em</title>
     <link rel="stylesheet" type="text/css" href="matchingGame.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
@@ -21,11 +21,12 @@
 
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>LINQ Matching Game Instructions<br><br>Click and drag the names
+                <p>How to Play <b>LINQ 'em</b> - Top 20 Users Matching Game<br><br>Click and drag the names
                     from the right box to their corresponding data usage/device types in the left box.
-                    You have 5 tries to get 3 correct answers! Correct matches will be highlighted in green,
+                    You have 5 tries to get 3 correct answers!<br>Correct matches will be highlighted in green,
                     and your score is tracked at the top right of the screen.
                 </p>
+                <button id ="startBtn"></button>
             </div>
         </div>
         <div id = "correctImg">
@@ -48,12 +49,14 @@
 
     <div id="content">
         <div id="successMessage">
-            <h2>You Win!</h2>
-            <button id = "playAgainBtn" onclick="init()">Play Again</button>
+            <h2>You Won!</h2>
+            <p>Way to go! Ask about your prize on the call.</p>
+            <button id = "playAgainBtn" onclick="init()"></button>
         </div>
         <div id="failMessage">
             <h2>You Lose!</h2>
-            <button id = "playAgainBtn" onclick="init()">Play Again</button>
+            <p><i>Whomp whomp.</i> Try again to win a prize!</p>
+            <button id = "playAgainBtn" onclick="init()"></button>
         </div>
 
         <div id="names"> </div>

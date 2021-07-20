@@ -1,6 +1,6 @@
 body 
 {
-    margin: 30px;
+    margin: 7px;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     line-height: 1.5em;
     color: navy;
@@ -14,7 +14,7 @@ h1, h2, h3, h4
 
 #content 
 {
-    margin: 40px 35px;
+    margin: 0px 10px;
     text-align: center;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -114,7 +114,7 @@ h1, h2, h3, h4
  
 #datadevices 
 {
-    margin: 0 auto 3em auto;
+    margin: 0 auto;
     background: mintcream;
     float: left;
 }
@@ -128,7 +128,7 @@ h1, h2, h3, h4
  
 #datadevices, #names 
 {
-    width: 47%;
+    width: 47.5%;
     height: 80%;
     padding: .85em;
     border: 2px solid navy;
@@ -144,7 +144,7 @@ h1, h2, h3, h4
 #datadevices div, #names div 
 {
     float: left;
-    width: 43%;
+    width: 44.5%;
     height: 18%;
     padding: .85em;
     padding-top: 5px;
@@ -154,6 +154,8 @@ h1, h2, h3, h4
     -webkit-border-radius: 10px;
     border-radius: 10px;
     margin: 10px 0 0 10px;
+    white-space: nowrap;
+    font-size: .85em;
 }
  
 #datadevices div.hovered 
@@ -170,7 +172,6 @@ h1, h2, h3, h4
 #names div 
 {
     color: navy;
-    font-size: 1em;
     text-align: center;
 }
  
@@ -209,10 +210,32 @@ h1, h2, h3, h4
 {
     background: rgb(243, 157, 157);
 }
-#playAgainBtn
+#playAgainBtn, #startBtn
 {
-    padding: 5px;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    color: mintcream;
-    background-color: navy;
+    background-image: url("play1.jpg");
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    padding: 0px;
+}
+#startBtn
+{    
+    width: 155px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+}
+#playAgainBtn
+{    
+    width: 115px;
+    height: 25px;
+    border: none;
+    border-radius: 10px;
+}
+#galaxyImg
+{
+    justify-content: left;
+    height: 50px;
+    width: 50px;
+    background-color: transparent;
 }
